@@ -1,0 +1,128 @@
+
+**************************************************
+		Indice
+**************************************************
+	- Instalaciones
+	- Notas generales
+	- Back-end
+	- Front-end
+	- Pruebas unitarias e integracion
+	- Typescript sin angular
+	- Javascript
+	
+
+
+**************************************************
+		Instalaciones
+**************************************************
+
+	* Node.js
+	* @angular/cli
+	* git bash 
+	* animate.css
+	* git lens
+	* angular snippets
+	* bootstrap
+	* bracket pair colorizer
+	* material icon theme
+	* typescript 
+	
+
+
+
+
+
+**************************************************
+		Notas Generales
+**************************************************
+		Elemento 					Definicion				Donde					Ejemplo
+	*Node = Javascript al lado del servidor 
+	*animated.css					css par aponer clases a las directivas
+	*Snnipets
+	*Rxjs						librería para operados de observables		http://reactivex.io/documentation/operators.html
+	*LazyLoad					para que se carguen solo los componentes 
+							que me hacen falta
+	*app a producción
+	* script .js en angular						1º <script src=''> 2º .ts declare functon (la del.js) 3º llamar a la 2º en el ngOnInit etc
+	*Express 					Servidor del lado de node para crear 
+							servicios REST
+	*nvm list
+	*nvm use 'version node'
+***************************************************
+		Back End
+***************************************************
+		Elemento 					Definicion				Donde					Ejemplo
+	*node app 				Arrancar el servidor
+	*Mongoose
+	*Nodemon
+	*MiddleWare				Lo que se ejecuta en las peticones
+							antes de que se resuelvan
+	*error de CORS 				Es un error de que nuestro back-end nos 
+							está rechazando por que no tenemos configurado
+							que nos permita peticiones de otro dominios
+							backend port 4000 / frontend port 4200
+							Hay un middleware para controlarlo
+	
+
+
+
+***************************************************
+		Front End
+***************************************************
+		Elemento 					Definicion				Donde					Ejemplo
+
+	*Array.indexOf ( 'nombre, numero') <0   											Array.indexOf ( 'nombre, numero') <0   
+	*Evento de RouterLink 									Breadcrumbs			return this.router.events.pipe()
+
+	*ngNativeValidate 			validaciones nativas de angular 		 Profile
+	*Upload File										 Profile
+	*Focus input en 										incrementador
+	*ngModelChange				evento que se sejcuta al cambiar un input
+	*@Input/@Output 										 progress bar
+	*<ng-template>				nos deja hacer if y else en el html		 VRS54
+	*@Inject(DOCUMENT) private _document	nos permite acceder a todo el DOM		 Settings.service		_document.getElementById('theme').setAttribute('href', url );	
+	*classlist.remove() etc
+	*RouterLinkActive = true/false
+	*Valor opcional en una propiedad		poner un valor por defecto si no consigue otro					this.email = email || 'valor por defecto'
+	*(change) 				evento change cuando cambia algo
+	*EventEmitter 										modalService
+	*[routerLink] 				puede enviar dos parametros							
+	*[ngSwitch]										calendar GRC
+	* [propiedad etiqueta] = "propiedad de angular" 
+
+
+
+***************************************************
+		Pruebas unitarias e integración
+***************************************************
+		Elemento 					Definicion				Donde					Ejemplo
+	* Interceptors					Son un tipo de servicio que atrapa las 
+								peticiones http de la ap y hace lo
+								que le digamos. Util para enviar 
+								headers y manejar errores en las 
+
+
+
+
+
+
+***************************************************
+		Typescript sin angular(VRS41)
+***************************************************							
+
+1º creamos un .ts que cuando lo compilamos se convertirá en .js
+
+2º en la carpeta donde está el .ts o del proyecto ejecuto el comando tsc ó tsc + 'nombre del archivo'
+
+3º para generarlo automaticamente se hace "tsc -w  *.ts"
+
+
+
+***************************************************
+		Javascript sin angular
+***************************************************
+
+1º Genero un .js
+
+2º Creo un <script en el index
+	
