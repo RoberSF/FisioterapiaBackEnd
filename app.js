@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser'); // librería para pasar la data del post en un objeto javascript
 
 
-
+const port = process.env.PORT || 4000;
 
 
 
@@ -94,4 +94,4 @@ app.use('/', appRoutes); // middleware. "Cualquier match con '/' , ejecuta appRo
 
 
 //****************************************************Escuchar peticiones ******************************************************
-app.listen(4000, () => { console.log('Express Server corriendo en el puerto 4000:\x1b[32m%s\x1b[0m', 'running') });
+app.listen(port, () => { console.log('Express Server corriendo en el puerto 4000:\x1b[32m%s\x1b[0m', 'running') });
