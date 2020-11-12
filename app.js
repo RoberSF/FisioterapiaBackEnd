@@ -36,11 +36,52 @@ app.use(bodyParser.json())
 
 
 
+// *******************************************Conexión a la base de datos local*******************************************************
+// mongoose.connection.openUri('mongodb://localhost:27017/hospitaldb', (error, response) => {
+//     if (error) throw error;
+//     console.log('Base de datos:\x1b[32m%s\x1b[0m', 'running')
+// })
+
+
+
 // *******************************************Conexión a la base de datos*******************************************************
-mongoose.connection.openUri('mongodb://localhost:27017/hospitaldb', (error, response) => {
-    if (error) throw error;
-    console.log('Base de datos:\x1b[32m%s\x1b[0m', 'running')
-})
+//                                              Local vs Atlas
+//*****************************************************************************************************************************
+// *podría ponerlo en config.js e importarlo
+
+// ============================
+//  Variables de entorno
+// ============================
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
+// ============================
+//  Base de datos
+// ============================
+let urlDB;
+
+if (process.env.NODE_ENV === 'dev') {
+    urlDB = 'mongodb://localhost:27017/fisioterapiaDb';
+} else {
+
+    urlDB = process.env.URLDB; //url que saco de mogoatlas=>connect => using mongo compass
+}
+
+process.env.URLDB = urlDB;
+
+
+//mongodb+srv://admin:<password>@cluster0.v9ttl.mongodb.net/<dbname>
+//mongoose.connection.openUri('mongodb://localhost:27017/hospitaldb', { // cuando trabajo en localhost antes de configurar mongo atlas
+mongoose.connection.openUri(process.env.URLDB, {
+        // lo de abajo son variables que me pide mongo al arrancar el server
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+    },
+    (error, response) => {
+        if (error) throw error;
+        console.log('Base de datos:\x1b[32m%s\x1b[0m', 'running')
+    })
 
 
 //*********************************************Importar rutas que voy a usar****************************************************
