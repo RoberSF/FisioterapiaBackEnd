@@ -13,6 +13,7 @@ var postSchema = new Schema({
     date: { type: Date, required: [true, 'La fecha es necesaria'] },
     comentarios: { type: String, requiered: false },
     img: { type: String, requiered: false },
+    idAuthor: { type: String, requiered: false }
     //categoria: {type: Schema.Types.ObjectId, ref: 'Categoria', required: true },
 });
 

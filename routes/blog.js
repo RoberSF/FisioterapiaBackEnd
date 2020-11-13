@@ -92,19 +92,20 @@ app.get('/:id', (req, resp) => {
 
 app.post('/', (request, response) => { // mando el middleware como parámetro
 
+
     var body = request.body; // esto sólo va a funcionar si tengo el body-
     var date = new Date()
-    var dateES = moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
-    //var IsoDate = date.toISOString().substring(0, 10)
+        //var dateES = moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
+        //var IsoDate = date.toISOString().substring(0, 10)
 
     var post = new Post({ // con esto creamos esta referencia para despues guardarlo
         title: body.title,
         intro: body.intro,
         contenido: body.contenido,
         categoria: body.categoria,
-        date: dateES,
+        date: date,
         comentarios: body.comentarios,
-        img: body.img
+        //img: body.imagen
     });
 
     post.save((error, postGuardado) => {
@@ -119,8 +120,10 @@ app.post('/', (request, response) => { // mando el middleware como parámetro
             ok: true,
             post: postGuardado,
         });
+        console.log(postGuardado);
 
     });
+
 
 
 })
@@ -208,22 +211,11 @@ app.delete('/:id', [middlewareAutentication.verificaToken, middlewareAutenticati
 
 app.post('/postImg', (request, response) => { // mando el middleware como parámetro
 
+    console.log(request.body);
     var body = request.body; // esto sólo va a funcionar si tengo el body ok
     var postImg = request.files.imagen;
     //var date = new Date() ok 
     //var dateES = moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss'); // Da error
-
-
-
-
-
-    //Si no viene ninguna imagen que diga el mensaje aun que en principio me daría igual que vaya o no la imagen
-    if (!request.files) {
-        return response.status(400).json({
-            ok: false,
-            mensaje: 'No files'
-        })
-    }
 
 
     // Obtener nombre del archivo para verificar que es una imagen
@@ -251,8 +243,6 @@ app.post('/postImg', (request, response) => { // mando el middleware como parám
 
     postImg.mv(path, err => {
 
-        console.log(newNameFile);
-        console.log(path);
         if (err) {
             return response.status(500).json({
                 ok: false,
@@ -271,8 +261,11 @@ app.post('/postImg', (request, response) => { // mando el middleware como parám
             categoria: body.categoria,
             date: new Date(),
             comentarios: body.comentarios,
-            img: path
+            img: newNameFile,
+            idAuthor: body.idAuthor
         });
+
+        // console.log(post);
 
         post.save((error, postGuardado) => {
             if (error) {
@@ -282,7 +275,7 @@ app.post('/postImg', (request, response) => { // mando el middleware como parám
                     errors: error
                 });
             }
-            response.status(201).json({
+            response.status(200).json({
                 ok: true,
                 post: postGuardado,
             });
@@ -290,9 +283,6 @@ app.post('/postImg', (request, response) => { // mando el middleware como parám
         });
 
     })
-
-
-
 
 })
 
