@@ -18,7 +18,7 @@ app.get('/', (request, response, next) => {
     var since = request.query.since || 0; // lo que recibo por la url. Siguiente paso? .skip
     since = Number(since); // localhost:4000/usuario?since=0,1,2...
 
-    Usuario.find({}, ('nombre email img role google')) //el .find es por mongoo. Las caracteristicas es para que se muestre sólo eso. Yo no quiero que me enseñe su password por ejemplo
+    Usuario.find({}, ('nombre email number img role google')) //el .find es por mongoo. Las caracteristicas es para que se muestre sólo eso. Yo no quiero que me enseñe su password por ejemplo
         .skip(since) // con esto le estoy diciendo que se salte los x registros "localhost:4000/usuario?since=5"
         .limit(5) // le estoy diciendo que me muestre sólo los 5 primeros registros. Siguiente paso? var = since
         .exec(
@@ -59,6 +59,7 @@ app.post('/', (request, response) => { // mando el middleware como parámetro
         nombre: body.nombre,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10), // encriptación automática
+        number: body.number,
         img: body.img,
         role: body.role
     });
@@ -109,7 +110,8 @@ app.put('/:id', [middlewareAutentication.verificaToken, middlewareAutentication.
 
         usuario.nombre = body.nombre;
         usuario.email = body.email;
-        usuario.role = body.role;
+        usuario.number = body.number,
+            usuario.role = body.role;
 
         usuario.save((error, usuarioGuardado) => {
             if (error) {
