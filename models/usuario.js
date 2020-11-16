@@ -13,23 +13,24 @@ var rolesValidos = {
 }
 
 var usuarioSchema = new Schema({
-    nombre:{type: String, required: [true, 'El nombre es necesario']}, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
-    email:{type: String, unique:true, required: [true, 'El correo es necesario']}, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
-    password:{type: String, required: [true, 'El password es necesario']}, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
-    img:{type: String, requiered:false}, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
-    role:{type: String, requiered:true,default:'USER_ROLE', enum: rolesValidos}, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
-                                                                                // enum lo que hace es permitirme solo los valores que le digo arriba
-    google: {type: Boolean, default:false}                                    
+    nombre: { type: String, required: [true, 'El nombre es necesario'] }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    email: { type: String, unique: true, required: [true, 'El correo es necesario'] }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    number: { type: Number, required: [false, 'El número es necesario'] }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    password: { type: String, required: [true, 'El password es necesario'] }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    img: { type: String, requiered: false }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    role: { type: String, requiered: true, default: 'USER_ROLE', enum: rolesValidos }, // para decirle el tipo de dato que es y que es requerido=obligatorio, el mensaje es opcional
+    // enum lo que hace es permitirme solo los valores que le digo arriba
+    google: { type: Boolean, default: false }
 
-});                                                                              
+});
 
 
-usuarioSchema.plugin(uniqueValidator, {message: '{PATH} debe ser único'});
+usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' });
 
 
 module.exports = mongoose.model('Usuario', usuarioSchema)
-// para poder usar este archivo fuera. "Usuario" es el nombre que le doy a este esquema afuera
+    // para poder usar este archivo fuera. "Usuario" es el nombre que le doy a este esquema afuera
 
 
 
-// 
+//
