@@ -29,14 +29,16 @@ app.get('/todo/:busqueda', (request, response, next) => {
     Promise.all([ // nos permite mandar un array de promesas y si se cumplen todas ejecuta el then y si no manejamos el catch
         buscarHospitales(busqueda, regex),
         buscarMedicos(busqueda, regex),
-        buscarUsuario(busqueda, regex)
+        buscarUsuario(busqueda, regex),
+        buscarPost(busqueda, regex)
     ]).then(respuestas => {
 
         response.status(200).json({
             ok: true,
             hospitales: respuestas[0], //van en el orden que establezco en el array de promesas
             medicos: respuestas[1],
-            usuarios: respuestas[2]
+            usuarios: respuestas[2],
+            posts: respuestas[3]
 
         });
     })
